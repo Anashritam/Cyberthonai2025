@@ -1,6 +1,3 @@
-Below is the full markdown code for the **Deepfake Detection Tool - HEAR Framework** as requested:
-
-```markdown
 # 🚀 Deepfake Detection Tool - HEAR Framework
 
 A forensic deepfake detection tool implementing the **Hierarchical Ensemble with Adaptive Routing (HEAR)** framework to identify manipulated images, videos, and audio using TSIGN, CMAF, and EAD-SNM approaches.
