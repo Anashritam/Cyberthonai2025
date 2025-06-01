@@ -1,88 +1,153 @@
-# HEAR System: Deepfake & AI-Generated Media Detection Tool
+Below is the full markdown code for the **Deepfake Detection Tool - HEAR Framework** as requested:
 
-**Forensic-Grade | Multi-Modal | Real-Time | Cyberthon.ai-2025**
+```markdown
+# 🚀 Deepfake Detection Tool - HEAR Framework
 
----
-
-## Quick Navigation
-- [Project Overview](#project-overview)
-- [Key Features](#key-features)
-- [System Architecture](#system-architecture)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Performance Metrics](#performance-metrics)
-- [Project Structure](#project-structure)
-- [Testing](#testing)
-- [Configuration](#configuration)
-- [Legal and Ethical Considerations](#legal-and-ethical-considerations)
-- [Team Code Rangers](#team-code-rangers)
-- [License & Support](#license--support)
+A forensic deepfake detection tool implementing the **Hierarchical Ensemble with Adaptive Routing (HEAR)** framework to identify manipulated images, videos, and audio using TSIGN, CMAF, and EAD-SNM approaches.
 
 ---
 
-## Project Overview 🎯
+## 🛡️ Overview
 
-The **HEAR (Hierarchical Ensemble with Adaptive Routing) System** is an advanced forensic tool designed to combat the growing threat of deepfakes in law enforcement scenarios. With deepfakes achieving **91-98% realism** and current detection tools offering only **39-69% accuracy**, our solution provides a robust, multi-modal approach to digital media authentication.
+The HEAR system is a **state-of-the-art deepfake detection tool** designed for forensic applications.  
+It combines three specialized detection approaches:
 
-Developed for the **Cyberthon.ai-2025 hackathon** by **Team Code Rangers**.
-
----
-
-## Key Features 🚀
-
-| Feature | Description |
-|---------|-------------|
-| **Multi-Modal Detection** | Simultaneous analysis of video, audio, and images |
-| **Real-Time Processing** | 5-10 minutes processing time for 30-second videos |
-| **High Accuracy** | 77% fake probability detection with 90.8% confidence |
-| **Forensic-Grade Documentation** | Compliant with digital forensics chain of custody requirements |
-| **Explainable AI** | Interpretable evidence suitable for legal contexts |
-| **Scalable Architecture** | Handles 100-1000 concurrent analyses |
+- **TSIGN** → Temporal-Spatial Inconsistency Graph Network (temporal analysis)
+- **CMAF** → Cross-Modal Alignment Filter (audio-visual synchronization)
+- **EAD-SNM** → Entropy-Aware Distribution Shift Neural Monitor (anomaly detection)
 
 ---
 
-## System Architecture 🏗️
+## 🏗️ Architecture
 
-The HEAR System employs a **three-tier architecture** with parallel processing:
+The system operates across **three tiers**:
 
-### Detection Networks
-- **Temporal-Spatial Inconsistency Graph Network (TSIGN)**: Graph neural networks for detecting temporal inconsistencies in facial landmarks and micro-expressions.
-- **Cross-Modal Alignment Filter (CMAF)**: Cross-modal alignment for audio-visual synchronization analysis.
-- **Entropy-Aware Distribution Shift Neural Monitor (EAD-SNM)**: Ensemble anomaly detection for statistical deviations.
+1. **Tier 1: Parallel Processing**  
+   Simultaneous analysis by all three detectors.
 
-### Processing Layers
-- **Adaptive Fusion Layer**: Dynamically weights network outputs based on input confidence and consistency.
-- **Meta-Classifier**: Stacked ensemble for final verdict with uncertainty quantification.
+2. **Tier 2: Adaptive Fusion**  
+   Dynamic weighting based on input characteristics.
+
+3. **Tier 3: Meta-Classification**  
+   Final ensemble decision with uncertainty quantification.
 
 ---
 
-## Installation 🛠️
+## 🚀 Quick Start
 
-### Hardware Requirements
-- **Minimum**: 8GB RAM
-- **Recommended**: GPU acceleration for optimal performance
-- **Storage**: Sufficient space for model weights and processing cache
+### 🔧 Installation
 
-### Software Dependencies
-- Python 3.8+
-- TensorFlow/PyTorch
-- OpenCV
-- NumPy
-- Librosa (for audio processing)
-- Flask/FastAPI (for web interface)
-
-### Installation Steps
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/hear-deepfake-detection.git
-cd hear-deepfake-detection
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
+git clone https://github.com/your-username/Deepfake-Detection-HEAR.git
+cd Deepfake-Detection-HEAR
 pip install -r requirements.txt
+```
 
-# Download pre-trained models
-python download_models.py
+#### 📥 Download Pre-trained Models
+Refer to `datasets/README.md` and place model files in:
+
+```bash
+src/models/weights/
+```
+
+### 🎬 Usage
+
+#### Launch Streamlit Interface
+
+```bash
+streamlit run src/app.py
+```
+
+Access the web interface at → [http://localhost:8501](http://localhost:8501)
+
+#### 🧩 API Usage
+
+```python
+from src.models.hear_detector import HEARDetector
+
+# Initialize detector
+detector = HEARDetector()
+
+# Analyze media file
+result = detector.analyze('path/to/media/file.mp4')
+
+print(f"Classification: {result['classification']}")
+print(f"Confidence: {result['confidence']:.2%}")
+```
+
+---
+
+## 📊 Model Components
+
+### TSIGN (Temporal-Spatial Inconsistency Graph Network)
+- **Purpose**: Detects temporal inconsistencies in facial landmarks and micro-expressions.
+- **Architecture**: Graph Neural Network (GNN) with MediaPipe integration.
+- **Input**: Video frames with facial landmark extraction.
+- **Output**: Temporal consistency scores and anomaly regions.
+
+### CMAF (Cross-Modal Alignment Filter)
+- **Purpose**: Analyzes audio-visual synchronization for manipulation detection.
+- **Architecture**: Vision Transformer + Audio CNN with cross-attention.
+- **Input**: Video frames and audio spectrograms.
+- **Output**: Synchronization scores and misalignment detection.
+
+### EAD-SNM (Entropy-Aware Distribution Shift Neural Monitor)
+- **Purpose**: Detects statistical anomalies using ensemble methods.
+- **Architecture**: Autoencoder + Isolation Forest + One-Class SVM.
+- **Input**: Raw media features.
+- **Output**: Anomaly scores and distribution deviation metrics.
+
+---
+
+## 🧪 Testing
+
+### Run all tests
+
+```bash
+pytest tests/
+```
+
+### Run specific component tests
+
+```bash
+pytest tests/test_tsign.py
+pytest tests/test_cmaf.py
+pytest tests/test_ead_snm.py
+pytest tests/test_hear.py
+```
+
+### Run with coverage
+
+```bash
+pytest --cov=src tests/
+```
+
+---
+
+## 📈 Performance
+
+| Metric              | Value                              |
+|---------------------|------------------------------------|
+| Accuracy            | 77–85% on cross-dataset eval       |
+| Processing Time     | 15–25 sec per 30-sec video         |
+| Supported Formats   | MP4, AVI (video), MP3, WAV (audio), JPG, PNG (images) |
+
+---
+
+## 🔧 Configuration
+
+Place model weights in the following paths:
+```bash
+src/models/weights/tsign_model.h5
+src/models/weights/cmaf_model.h5
+src/models/weights/ead_snm_model.h5
+```
+
+---
+
+## 📄 License
+
+This project is licensed under the terms of the LICENSE file.
+```
+
+This markdown code is formatted to match the structure and content you provided, ensuring proper headings, code blocks, tables, and links for clarity and readability. You can copy and paste this into any markdown-supported environment (e.g., GitHub README, Jupyter Notebook, or a markdown editor) to render it as intended.
